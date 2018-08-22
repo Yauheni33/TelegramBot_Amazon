@@ -25,6 +25,8 @@ toaddrYauheni = "busko-007@mail.ru"
 def product(asin, user, flag):
     #EMAIL
     if flag:
+        print("Почти")
+        '''
         msg = MIMEMultipart()
         msg['From'] = fromaddr
         msg['To'] = toaddrPAVEL
@@ -47,6 +49,7 @@ def product(asin, user, flag):
         server.sendmail(fromaddr, toaddrPAVEL, text)
         server.sendmail(fromaddr, toaddrYauheni, textMy)
         server.quit()
+        '''
     #-----
     try:
         url = requests.get("https://www.amazon.com/Nacome-Cotton-Breathable-Panties-Underwear/dp/" + asin, headers=header)
@@ -54,7 +57,8 @@ def product(asin, user, flag):
         with open("file.html", "w") as file:
             file.write(str(page))
         mainImage = page.find("div", {"id": "imgTagWrapperId"}).find("img")['data-a-dynamic-image']
-    except:
+    except Exception as ex:
+        print(ex)
         return None
     try:
         line = page.find("span", {"id": "acrCustomerReviewText"}).text
