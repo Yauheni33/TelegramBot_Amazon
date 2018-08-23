@@ -1,15 +1,6 @@
-import queue
-import threading
-
-import main
+import json
 import requests
 from bs4 import BeautifulSoup
-import time
-import smtplib
-from email.mime.multipart import MIMEMultipart
-from email.mime.text import MIMEText
-from collections import deque
-from threading import Thread
 
 header = {
     'User-Agent': "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/11.1.2 Safari/605.1.15"
@@ -22,7 +13,7 @@ toaddrYauheni = "busko-007@mail.ru"
 
 
 
-def product(asin, user, flag):
+def product(asin, user, flag, info):
     #EMAIL
     if flag:
         print("Почти")
@@ -95,26 +86,14 @@ def product(asin, user, flag):
     print("Цена: ", price)
     print("Main IMAGE: ", mainImage)
     answer = [reviews, len(img), allbuyer, price, mainImage]
+    info['Users'][len(info['Users']) - 1]['reviews'] = reviews
+    info['Users'][len(info['Users']) - 1]['img'] = len(img)
+    info['Users'][len(info['Users']) - 1]['allbuyer'] = allbuyer
+    info['Users'][len(info['Users']) - 1]['price'] = price
+    info['Users'][len(info['Users']) - 1]['mainImage'] = mainImage
+    with open('users.json', 'w') as file:
+        json.dump(info, file, ensure_ascii=False)
     return answer
 
-def change(asin, user, flag, oldData, id):
-    newData = product(asin, user, flag)
-    if oldData[0] != newData[0]:
-        main.bot.send_message(id, "Изменилось количество Отзывов")
-        oldData[0] = newData[0]
-    if oldData[1] != newData[1]:
-        main.bot.send_message(id, "Изменилось количество картинок")
-        oldData[1] = newData[1]
-    if oldData[2] != newData[2]:
-        main.bot.send_message(id, "Изменилось количество продавцов")
-        oldData[2] = newData[2]
-    if oldData[3] != newData[3]:
-        main.bot.send_message(id, "Изменилась цена")
-        oldData[3] = newData[3]
-    if oldData[4] != newData[4]:
-        main.bot.send_message(id, "Изменилось главное фото")
-        oldData[4] = newData[4]
-    oldData = [oldData[0], oldData[1], oldData[2], oldData[3], oldData[4]]
-    threading.Timer(1800, change, args=[asin, user, flag, oldData, id]).start()
 
 #product("B0000CFN0Y", [], False)
