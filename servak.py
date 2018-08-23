@@ -21,7 +21,7 @@ toaddrYauheni = "busko-007@mail.ru"
 
 #bot.send_message(int(data['Users'][0]['id']), "Введите адекватный ASIN :)")
 
-with open('/Users/yauheni/PycharmProjects/OPTICATCH/users.json') as data_file:
+with open('users.json') as data_file:
     data = json.load(data_file)
 
 
