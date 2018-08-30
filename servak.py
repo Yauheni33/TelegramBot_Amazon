@@ -27,67 +27,77 @@ with open('users.json') as data_file:
 def product():
     #EMAIL
     for i in range(len(data['Users'])):
-        print("Я ТУТ")
-        print(time.ctime())
-        url = requests.get("https://www.amazon.com/Nacome-Cotton-Breathable-Panties-Underwear/dp/" + data['Users'][i]['asin'], headers=header)
-        page = BeautifulSoup(url.text, "html.parser")
-        with open("file.html", "w") as file:
-            file.write(str(page))
-        mainImage = page.find("div", {"id": "imgTagWrapperId"}).find("img")['data-a-dynamic-image']
-        try:
-            line = page.find("span", {"id": "acrCustomerReviewText"}).text
-            line = line.replace(',', '')
-            reviews = [int(s) for s in line.split() if s.isdigit()]
-            reviews = int(reviews[0])
-        except:
-            reviews = 0
-        img = page.find("div", {"id": "altImages"}).findAll("img")
-        url = requests.get("https://www.amazon.com/gp/offer-listing/" + data['Users'][i]['asin'] + "/ref=dp_olp_new_mbc?ie=UTF8&condition=new", headers=header)
-        page = BeautifulSoup(url.text, "html.parser")
-        with open("file.html", "w") as file:
-            file.write(str(page))
-        allbuyer = str(page).count("a-row a-spacing-mini olpOffer")
-        page = BeautifulSoup(str(page).replace('\n', ''), "html.parser")
-        try:
-            price = page.find("div", {"class": "a-row a-spacing-mini olpOffer"}).find("span").text.replace("                ", '')
-        except:
-            price = 0
-        # page.find("li", attrs={"class": "a-last"}) != None
-        try:
-            a = page.find("ul", {"class": "a-pagination"}).findAll("li")
-            lastPage = BeautifulSoup(
-                (requests.get("https://www.amazon.com" + a[len(a) - 2].find("a")['href'], headers=header)).text,
-                "html.parser")
-            a = int(a[len(a) - 2].text[4:])
-            allbuyer += (a - 2) * 10
-            allbuyer += str(lastPage).count("a-row a-spacing-mini olpOffer")
-        except:
-            print("1 Старница")
-        print("Количество отзывов: ", reviews)
-        print("Количество фото: ", len(img))
-        print("Количество продавцов: ", allbuyer)
-        print("Цена: ", price)
-        print("Main IMAGE: ", mainImage)
-        answer = [reviews, len(img), allbuyer, price, mainImage]
-        change(answer, i)
+        for j in range(len(data['Users'][i]['asins']) - 1):
+            print("Я ТУТ")
+            url = requests.get("https://www.amazon.com/Nacome-Cotton-Breathable-Panties-Underwear/dp/" + data['Users'][i]['asins'][j]['asin'], headers=header)
+            page = BeautifulSoup(url.text, "html.parser")
+            with open("file.html", "w") as file:
+                file.write(str(page))
+            mainImage = page.find("div", {"id": "imgTagWrapperId"}).find("img")['data-a-dynamic-image']
+            try:
+                line = page.find("span", {"id": "acrCustomerReviewText"}).text
+                line = line.replace(',', '')
+                reviews = [int(s) for s in line.split() if s.isdigit()]
+                reviews = int(reviews[0])
+            except:
+                reviews = 0
+            img = page.find("div", {"id": "altImages"}).findAll("img")
+            url = requests.get("https://www.amazon.com/gp/offer-listing/" + data['Users'][i]['asins'][j]['asin'] + "/ref=dp_olp_new_mbc?ie=UTF8&condition=new", headers=header)
+            page = BeautifulSoup(url.text, "html.parser")
+            with open("file.html", "w") as file:
+                file.write(str(page))
+            allbuyer = str(page).count("a-row a-spacing-mini olpOffer")
+            page = BeautifulSoup(str(page).replace('\n', ''), "html.parser")
+            try:
+                price = page.find("div", {"class": "a-row a-spacing-mini olpOffer"}).find("span").text.replace("                ", '')
+            except:
+                price = 0
+            # page.find("li", attrs={"class": "a-last"}) != None
+            try:
+                a = page.find("ul", {"class": "a-pagination"}).findAll("li")
+                lastPage = BeautifulSoup(
+                    (requests.get("https://www.amazon.com" + a[len(a) - 2].find("a")['href'], headers=header)).text,
+                    "html.parser")
+                a = int(a[len(a) - 2].text[4:])
+                allbuyer += (a - 2) * 10
+                allbuyer += str(lastPage).count("a-row a-spacing-mini olpOffer")
+            except:
+                print("1 Старница")
+            print("Количество отзывов: ", reviews)
+            print("Количество фото: ", len(img))
+            print("Количество продавцов: ", allbuyer)
+            print("Цена: ", price)
+            print("Main IMAGE: ", mainImage)
+            answer = [reviews, len(img), allbuyer, price, mainImage]
+            change(answer, i, j)
 
 
-def change(newCheck, index):
-    if data['Users'][index]['reviews'] != newCheck[0]:
-        bot.send_message(int(data['Users'][index]['id']), "Изменилось количество Отзывов")
-        data['Users'][index]['reviews'] = newCheck[0]
-    if data['Users'][index]['img'] != newCheck[1]:
-        bot.send_message(int(data['Users'][index]['id']), "Изменилось количество картинок")
-        data['Users'][index]['img'] = newCheck[1]
-    if data['Users'][index]['allbuyer'] != newCheck[2]:
-        bot.send_message(int(data['Users'][index]['id']), "Изменилось количество продавцов")
-        data['Users'][index]['allbuyer'] = newCheck[2]
-    if data['Users'][index]['price'] != newCheck[3]:
-        bot.send_message(int(data['Users'][index]['id']), "Изменилась цена")
-        data['Users'][index]['price'] = newCheck[3]
-    if data['Users'][index]['mainImage'] != newCheck[4]:
-        bot.send_message(int(data['Users'][index]['id']), "Изменилось главное фото")
-        data['Users'][index]['mainImage'] = newCheck[4]
+def change(newCheck, index, j):
+    #info['Users'][user]['asins'][len(info['Users'][user]['asins']) - 1]['reviews']
+    if str(data['Users'][index]['asins'][j]['reviews']) != str(newCheck[0]):
+        bot.send_message(int(data['Users'][index]['id']), "По ASIN'у: " + str(
+            data['Users'][index]['asins'][j]['asin']) + " изменилось количество отзывов c " + str(
+            data['Users'][index]['asins'][j]['reviews']) + " на " + str(newCheck[0]))
+        data['Users'][index]['asins'][j] = newCheck[0]
+    if str(data['Users'][index]['asins'][j]['img']) != str(newCheck[1]):
+        bot.send_message(int(data['Users'][index]['id']), "По ASIN'у: " + str(
+            data['Users'][index]['asins'][j]['asin']) + " изменилось количество картинок c " + str(
+            data['Users'][index]['asins'][j]['reviews']) + " на " + str(newCheck[0]))
+        data['Users'][index]['asins'][j]['img'] = newCheck[1]
+    if str(data['Users'][index]['asins'][j]['allbuyer']) != str(newCheck[2]):
+        bot.send_message(int(data['Users'][index]['id']), "По ASIN'у: " + str(
+            data['Users'][index]['asins'][j]['asin']) + " изменилось количество продавцов c " + str(
+            data['Users'][index]['asins'][j]['reviews']) + " на " + str(newCheck[0]))
+        data['Users'][index]['asins'][j]['allbuyer'] = newCheck[2]
+    if str(data['Users'][index]['asins'][j]['price']) != str(newCheck[3]):
+        bot.send_message(int(data['Users'][index]['id']), "По ASIN'у: " + str(
+            data['Users'][index]['asins'][j]['asin']) + " изменилась цена c " + str(
+            data['Users'][index]['asins'][j]['reviews']) + " на " + str(newCheck[0]))
+        data['Users'][index]['asins'][j]['price'] = newCheck[3]
+    if str(data['Users'][index]['asins'][j]['mainImage']) != str(newCheck[4]):
+        bot.send_message(int(data['Users'][index]['id']), "По ASIN'у: " + str(
+            data['Users'][index]['asins'][j]['asin']) + " изменилось главное фото")
+        data['Users'][index]['asins'][j]['mainImage'] = newCheck[4]
     print("КОНЕЦ ПРОВЕРКИ")
 
 
@@ -95,4 +105,4 @@ if __name__ == '__main__':
     print("ПРОВЕРКА 2 ПОТОКА")
     while True:
         product()
-        time.sleep(60)
+        time.sleep(1800)

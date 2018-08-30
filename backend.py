@@ -2,8 +2,11 @@
 # -*- coding: utf-8 -*-
 
 import json
+from pprint import pprint
+
 import requests
 from bs4 import BeautifulSoup
+
 
 header = {
     'User-Agent': "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/11.1.2 Safari/605.1.15"
@@ -19,7 +22,6 @@ toaddrYauheni = "busko-007@mail.ru"
 def product(asin, user, flag, info):
     #EMAIL
     if flag:
-        #bot.send_message(308367462, asin)
         '''
         msg = MIMEMultipart()
         msg['From'] = fromaddr
@@ -89,11 +91,11 @@ def product(asin, user, flag, info):
     print("Цена: ", price)
     print("Main IMAGE: ", mainImage)
     answer = [reviews, len(img), allbuyer, price, mainImage]
-    info['Users'][user]['reviews'] = reviews
-    info['Users'][user]['img'] = len(img)
-    info['Users'][user]['allbuyer'] = allbuyer
-    info['Users'][user]['price'] = price
-    info['Users'][user]['mainImage'] = mainImage
+    info['Users'][user]['asins'][len(info['Users'][user]['asins']) - 1]['reviews'] = str(reviews)
+    info['Users'][user]['asins'][len(info['Users'][user]['asins']) - 1]['img'] = len(img)
+    info['Users'][user]['asins'][len(info['Users'][user]['asins']) - 1]['allbuyer'] = str(allbuyer)
+    info['Users'][user]['asins'][len(info['Users'][user]['asins']) - 1]['price'] = str(price)
+    info['Users'][user]['asins'][len(info['Users'][user]['asins']) - 1]['mainImage'] = str(mainImage)
     with open('users.json', 'w') as file:
         json.dump(info, file, ensure_ascii=False)
     return answer
