@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 import json
 import requests
 from bs4 import BeautifulSoup
@@ -16,7 +19,7 @@ toaddrYauheni = "busko-007@mail.ru"
 def product(asin, user, flag, info):
     #EMAIL
     if flag:
-        print("Почти")
+        #bot.send_message(308367462, asin)
         '''
         msg = MIMEMultipart()
         msg['From'] = fromaddr
@@ -86,11 +89,11 @@ def product(asin, user, flag, info):
     print("Цена: ", price)
     print("Main IMAGE: ", mainImage)
     answer = [reviews, len(img), allbuyer, price, mainImage]
-    info['Users'][len(info['Users']) - 1]['reviews'] = reviews
-    info['Users'][len(info['Users']) - 1]['img'] = len(img)
-    info['Users'][len(info['Users']) - 1]['allbuyer'] = allbuyer
-    info['Users'][len(info['Users']) - 1]['price'] = price
-    info['Users'][len(info['Users']) - 1]['mainImage'] = mainImage
+    info['Users'][user]['reviews'] = reviews
+    info['Users'][user]['img'] = len(img)
+    info['Users'][user]['allbuyer'] = allbuyer
+    info['Users'][user]['price'] = price
+    info['Users'][user]['mainImage'] = mainImage
     with open('users.json', 'w') as file:
         json.dump(info, file, ensure_ascii=False)
     return answer

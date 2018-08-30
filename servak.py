@@ -1,17 +1,16 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 import json
 import time
-from pprint import pprint
-import telebot
-import threading
 import requests
 from bs4 import BeautifulSoup
-
+from main import bot
 
 header = {
     'User-Agent': "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/11.1.2 Safari/605.1.15"
 }
 
-bot = telebot.TeleBot('620840940:AAFzqNAmhrpz-RV-qMPa2Q2KLuR62pnb3Sg')
 fromaddr = "quality.busko@gmail.com"
 mypass = "idinaxui"
 toaddrPAVEL = "busko-007@yandex.ru"
@@ -29,6 +28,7 @@ def product():
     #EMAIL
     for i in range(len(data['Users'])):
         print("Я ТУТ")
+        print(time.ctime())
         url = requests.get("https://www.amazon.com/Nacome-Cotton-Breathable-Panties-Underwear/dp/" + data['Users'][i]['asin'], headers=header)
         page = BeautifulSoup(url.text, "html.parser")
         with open("file.html", "w") as file:
@@ -92,6 +92,7 @@ def change(newCheck, index):
 
 
 if __name__ == '__main__':
+    print("ПРОВЕРКА 2 ПОТОКА")
     while True:
         product()
         time.sleep(60)
