@@ -1,1 +1,1 @@
-web: python3 main.py & python3 servak.py $PORT
+worker: python3 main.py & python3 servak.py
