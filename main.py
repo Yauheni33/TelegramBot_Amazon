@@ -8,7 +8,7 @@ import requests
 import telebot
 from telebot import types
 
-import backend
+from amazonchekinglisting import backend
 
 bot = telebot.TeleBot('620840940:AAF5VN_qQJoSZh0eVlN07hFcE8Aye2VRmjo')
 chekFunction = True
