@@ -27,9 +27,9 @@ with open('users.json') as data_file:
 
 def product():
     #EMAIL
+    print("Я ТУТ")
     for i in range(len(data['Users'])):
         for j in range(len(data['Users'][i]['asins']) - 1):
-            print("Я ТУТ")
             url = requests.get("https://www.amazon.com/Nacome-Cotton-Breathable-Panties-Underwear/dp/" + data['Users'][i]['asins'][j]['asin'], headers=header)
             page = BeautifulSoup(url.text, "html.parser")
             with open("file.html", "w") as file:
