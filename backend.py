@@ -98,6 +98,7 @@ def product(asin, user, flag, info):
     info['Users'][user]['asins'][len(info['Users'][user]['asins']) - 1]['mainImage'] = str(mainImage)
     with open('users.json', 'w') as file:
         json.dump(info, file, ensure_ascii=False)
+    print('Записал в файл')
     return answer
 
 
