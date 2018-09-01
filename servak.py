@@ -3,6 +3,8 @@
 
 import json
 import time
+from pprint import pprint
+
 import requests
 from bs4 import BeautifulSoup
 
@@ -27,9 +29,9 @@ with open('users.json') as data_file:
 
 def product():
     #EMAIL
-    print("Я ТУТ")
     for i in range(len(data['Users'])):
-        for j in range(len(data['Users'][i]['asins']) - 1):
+        for j in range(len(data['Users'][i]['asins'])):
+            print("Я ТУТ")
             url = requests.get("https://www.amazon.com/Nacome-Cotton-Breathable-Panties-Underwear/dp/" + data['Users'][i]['asins'][j]['asin'], headers=header)
             page = BeautifulSoup(url.text, "html.parser")
             with open("file.html", "w") as file:
@@ -79,21 +81,21 @@ def change(newCheck, index, j):
         bot.send_message(int(data['Users'][index]['id']), "По ASIN'у: " + str(
             data['Users'][index]['asins'][j]['asin']) + " изменилось количество отзывов c " + str(
             data['Users'][index]['asins'][j]['reviews']) + " на " + str(newCheck[0]))
-        data['Users'][index]['asins'][j] = newCheck[0]
+        data['Users'][index]['asins'][j]['reviews'] = newCheck[0]
     if str(data['Users'][index]['asins'][j]['img']) != str(newCheck[1]):
         bot.send_message(int(data['Users'][index]['id']), "По ASIN'у: " + str(
             data['Users'][index]['asins'][j]['asin']) + " изменилось количество картинок c " + str(
-            data['Users'][index]['asins'][j]['reviews']) + " на " + str(newCheck[0]))
+            data['Users'][index]['asins'][j]['img']) + " на " + str(newCheck[1]))
         data['Users'][index]['asins'][j]['img'] = newCheck[1]
     if str(data['Users'][index]['asins'][j]['allbuyer']) != str(newCheck[2]):
         bot.send_message(int(data['Users'][index]['id']), "По ASIN'у: " + str(
             data['Users'][index]['asins'][j]['asin']) + " изменилось количество продавцов c " + str(
-            data['Users'][index]['asins'][j]['reviews']) + " на " + str(newCheck[0]))
+            data['Users'][index]['asins'][j]['allbuyer']) + " на " + str(newCheck[2]))
         data['Users'][index]['asins'][j]['allbuyer'] = newCheck[2]
     if str(data['Users'][index]['asins'][j]['price']) != str(newCheck[3]):
         bot.send_message(int(data['Users'][index]['id']), "По ASIN'у: " + str(
             data['Users'][index]['asins'][j]['asin']) + " изменилась цена c " + str(
-            data['Users'][index]['asins'][j]['reviews']) + " на " + str(newCheck[0]))
+            data['Users'][index]['asins'][j]['price']) + " на " + str(newCheck[3]))
         data['Users'][index]['asins'][j]['price'] = newCheck[3]
     if str(data['Users'][index]['asins'][j]['mainImage']) != str(newCheck[4]):
         bot.send_message(int(data['Users'][index]['id']), "По ASIN'у: " + str(
@@ -106,4 +108,6 @@ if __name__ == '__main__':
     print("ПРОВЕРКА 2 ПОТОКА")
     while True:
         product()
+        with open('users.json', 'w') as file:
+            json.dump(data, file, ensure_ascii=False)
         time.sleep(1800)
