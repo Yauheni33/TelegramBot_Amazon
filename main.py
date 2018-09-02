@@ -47,8 +47,7 @@ def repeat_all_messages(message, flag=True):
     #    missed = checkKey(message)
     if True:
         # Читка из ФАЙЛ
-        with open('users.json') as data_file:
-            users = json.load(data_file)
+        users = json.loads(requests.get('http://OutIin.pythonanywhere.com/read/').text)
     
         index = 0
         if len(users['Users']) == 0:

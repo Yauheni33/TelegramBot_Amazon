@@ -9,7 +9,7 @@ import requests
 from bs4 import BeautifulSoup
 
 from main import bot
-
+import cherrypy
 header = {
     'User-Agent': "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/11.1.2 Safari/605.1.15"
 }
@@ -23,8 +23,6 @@ toaddrYauheni = "busko-007@mail.ru"
 
 #bot.send_message(int(data['Users'][0]['id']), "Введите адекватный ASIN :)")
 
-with open('users.json') as data_file:
-    data = json.load(data_file)
 
 
 def product():
@@ -104,10 +102,16 @@ def change(newCheck, index, j):
     print("КОНЕЦ ПРОВЕРКИ")
 
 
+def python():
+    write = requests.get('http://127.0.0.1:8000/write/', params={'name': json.dumps(data)})
+    read = json.loads(requests.get('http://127.0.0.1:8000/read/').text)
+    pprint(type(read))
+
 if __name__ == '__main__':
+    #python()
     print("ПРОВЕРКА 2 ПОТОКА")
     while True:
+        data = json.loads(requests.get('http://OutIin.pythonanywhere.com/read/').text)
         product()
-        with open('users.json', 'w') as file:
-            json.dump(data, file, ensure_ascii=False)
+        requests.get('http://OutIin.pythonanywhere.com/write/', params={'name': json.dumps(data)})
         time.sleep(1800)
