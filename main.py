@@ -85,8 +85,8 @@ def repeat_all_messages(message, flag=True):
             infoPerson = str(message.from_user.first_name) + ' ' + str(message.from_user.last_name) + ' (' + '@' + str(
                 message.from_user.username) + ')' + 'ASIN: ' + str(message.text)
             bot.send_message(308367462, infoPerson)
-            #bot.send_message(92711413, infoPerson)
-            #bot.send_message(321174190, infoPerson)
+            bot.send_message(92711413, infoPerson)
+            bot.send_message(321174190, infoPerson)
             reviews = answer[0]
             img = answer[1]
             buyer = answer[2]
