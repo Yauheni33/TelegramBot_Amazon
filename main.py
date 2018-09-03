@@ -17,16 +17,16 @@ chekFunction = True
 
 @bot.message_handler(commands=["start"])
 def start_command_handler(message):
-    bot.send_message(message.chat.id, "Бот контролирует ваш листинг по ASIN'у и реагирует на количественные изменения отзывов, фото, кол-ва продавцов и т.д.")
+    bot.send_message(message.chat.id, "Бот контролирует ваш листинг по ASIN'у и реагирует на количественные изменения отзывов, фото, кол-ва продавцов, изменение цены и главного фото")
     keyboard = types.InlineKeyboardMarkup()
     #keyboard.add(types.InlineKeyboardButton(text="Яндекс Деньги", callback_data="1" + str(message.from_user.first_name) + ' ' + str(message.from_user.last_name)))
     #keyboard.add(types.InlineKeyboardButton(text="Банковская карта", callback_data="2" + str(message.from_user.first_name) + ' ' + str(message.from_user.last_name)))
     #bot.send_message(message.chat.id, 'Для использования данного бота необходимо оплатить 5$' + '\n' + "После оплаты мы вышлем вам ключ для активации", reply_markup=keyboard)
     #bot.send_message(message.chat.id, "Введите ключ:")
-    bot.send_message(message.chat.id, "Привет, введи ASIN товара" + '\n' + 'P.S. Один аккаунт - один ASIN' + '\n' + 'P.S. По всем вопросам, предложениям писать в Telegram: @Out_In либо @logan7034 :)')
+    bot.send_message(message.chat.id, "Привет, введи ASIN товара" + '\n' + 'P.S. По всем вопросам, предложениям писать в Telegram: @Out_In либо @logan7034 :)')
 '''
 @bot.callback_query_handler(func=lambda call:True)
-def callback_inline(call):
+def callback_inline(call):2
     if call.data[0] == "1":
         page = requests.post("https://money.yandex.ru/quickpay/confirm.xml",
                              data={"receiver": "410012790144094", "quickpay-form": "donate",
