@@ -7,10 +7,13 @@ from pprint import pprint
 import requests
 from bs4 import BeautifulSoup
 
-
 header = {
     'User-Agent': "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/11.1.2 Safari/605.1.15"
 }
+
+zag = {'Content-type': 'application/json',  # Определение типа данных
+           'Accept': 'text/plain',
+           'Content-Encoding': 'utf-8'}
 
 fromaddr = "quality.busko@gmail.com"
 mypass = "idinaxui"
@@ -96,8 +99,10 @@ def product(asin, user, flag, info):
     info['Users'][user]['asins'][len(info['Users'][user]['asins']) - 1]['allbuyer'] = str(allbuyer)
     info['Users'][user]['asins'][len(info['Users'][user]['asins']) - 1]['price'] = str(price)
     info['Users'][user]['asins'][len(info['Users'][user]['asins']) - 1]['mainImage'] = str(mainImage)
-    requests.get('http://OutIin.pythonanywhere.com/write/', params={'name': json.dumps(info)})
-    print('Записал в файл')
+    #ask = requests.get('http://OutIin.pythonanywhere.com/write/', params={'name': json.dumps(info)})
+    #pprint(type(json.dumps(info)))
+    print(type(json.dumps(info)))
+    requests.post('http://OutIin.pythonanywhere.com/write/', data=json.dumps(info), headers=zag)
     return answer
 
 

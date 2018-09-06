@@ -1,1 +1,1 @@
-worker: python3 servak.py & python3 main.py
+worker: python3 servak.py & python3 lead.py

@@ -48,7 +48,7 @@ def repeat_all_messages(message, flag=True):
     if True:
         # Читка из ФАЙЛ
         users = json.loads(requests.get('http://OutIin.pythonanywhere.com/read/').text)
-    
+
         index = 0
         if len(users['Users']) == 0:
             users['Users'].append({})

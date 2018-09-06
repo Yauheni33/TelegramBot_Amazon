@@ -8,11 +8,15 @@ from pprint import pprint
 import requests
 from bs4 import BeautifulSoup
 
-from main import bot
+from lead import bot
 
 header = {
     'User-Agent': "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/11.1.2 Safari/605.1.15"
 }
+
+zag = {'Content-type': 'application/json',  # Определение типа данных
+           'Accept': 'text/plain',
+           'Content-Encoding': 'utf-8'}
 
 fromaddr = "quality.busko@gmail.com"
 mypass = "idinaxui"
@@ -113,5 +117,5 @@ if __name__ == '__main__':
     while True:
         data = json.loads(requests.get('http://OutIin.pythonanywhere.com/read/').text)
         product()
-        requests.get('http://OutIin.pythonanywhere.com/write/', params={'name': json.dumps(data)})
+        requests.post('http://OutIin.pythonanywhere.com/write/', data=json.dumps(data), headers=zag)
         time.sleep(1800)
