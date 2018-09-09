@@ -10,6 +10,10 @@ from telebot import types
 
 import backend
 
+zag = {'Content-type': 'application/json',  # Определение типа данных
+           'Accept': 'text/plain',
+           'Content-Encoding': 'utf-8'}
+
 bot = telebot.TeleBot('620840940:AAF5VN_qQJoSZh0eVlN07hFcE8Aye2VRmjo')
 chekFunction = True
 
@@ -23,6 +27,8 @@ def start_command_handler(message):
     #keyboard.add(types.InlineKeyboardButton(text="Банковская карта", callback_data="2" + str(message.from_user.first_name) + ' ' + str(message.from_user.last_name)))
     #bot.send_message(message.chat.id, 'Для использования данного бота необходимо оплатить 5$' + '\n' + "После оплаты мы вышлем вам ключ для активации", reply_markup=keyboard)
     #bot.send_message(message.chat.id, "Введите ключ:")
+    bot.send_message(message.chat.id,
+                     "Обновления бота (version 2.0)\n1) Добавлена команда /asin, показывающая асины, контролируемые ботом.\n2) Добавлена команда /delete [ваш ASIN], позволяющая удалить ASIN из бота.\n3) Сейчас при изменении показателей так же генерируется ссылка на ваш товар с данными изменениями.")
     bot.send_message(message.chat.id, "Привет, введи ASIN товара" + '\n' + 'P.S. По всем вопросам, предложениям писать в Telegram: @Out_In либо @logan7034 :)')
 '''
 @bot.callback_query_handler(func=lambda call:True)
@@ -39,6 +45,33 @@ def callback_inline(call):2
                                    "comment": call.data[1:]})
     bot.send_message(call.message.chat.id, page.url)
 '''
+
+@bot.message_handler(commands=["asin"])
+def callback_inline(message):
+    data = json.loads(requests.get('http://OutIin.pythonanywhere.com/read/').text)
+    bot.send_message(message.chat.id, "Ваши Асины:")
+    for i in range(len(data['Users'])):
+        if data['Users'][i]['id'] == str(message.chat.id):
+            for j in range(len(data['Users'][i]['asins'])):
+                bot.send_message(message.chat.id, str(j + 1) + ') ' + data['Users'][i]['asins'][j]['asin'] + '\n' + data['Users'][i]['asins'][j]['name'])
+
+@bot.message_handler(commands=["delete"])
+def callback_inlin(message):
+    asin = str(message.text)[8:]
+    data = json.loads(requests.get('http://OutIin.pythonanywhere.com/read/').text)
+    for i in range(len(data['Users'])):
+        if data['Users'][i]['id'] == str(message.chat.id):
+            print(len(data['Users'][i]['asins']))
+            for j in range(len(data['Users'][i]['asins'])):
+                if data['Users'][i]['asins'][j]['asin'] == asin:
+                    print(data['Users'][i]['asins'][j]['asin'] == asin)
+                    del data['Users'][i]['asins'][j]
+                    bot.send_message(message.chat.id, "ASIN: " + str(message.text)[7:] + " удален")
+                    break
+                if j == len(data['Users'][i]['asins']) - 1 and data['Users'][i]['asins'][j]['asin'] != asin:
+                    bot.send_message(message.chat.id, "Данного ASIN'a нет в вашем списке")
+    requests.post('http://OutIin.pythonanywhere.com/write/', data=json.dumps(data), headers=zag)
+
 @bot.message_handler()
 def repeat_all_messages(message, flag=True):
     #global missed
