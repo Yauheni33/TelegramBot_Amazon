@@ -51,11 +51,16 @@ def product(asin, user, flag, info):
         '''
     #-----
     try:
-        url = requests.get("https://www.amazon.com/Nacome-Cotton-Breathable-Panties-Underwear/dp/" + asin, headers=header)
+        url = requests.get("https://www.amazon.com/dp/" + asin, headers=header)
         page = BeautifulSoup(url.text, "html.parser")
         with open("file.html", "w") as file:
             file.write(str(page))
         mainImage = page.find("div", {"id": "imgTagWrapperId"}).find("img")['data-a-dynamic-image']
+        productTitle = page.find("span", {"id": "productTitle"}).text.replace('\n', '').replace(
+            '                                                                                                                                                        ',
+            '').replace(
+            '                                                                                                                        ',
+            '')
     except Exception as ex:
         print(ex)
         return None
@@ -93,7 +98,8 @@ def product(asin, user, flag, info):
     print("Количество продавцов: ", allbuyer)
     print("Цена: ", price)
     print("Main IMAGE: ", mainImage)
-    answer = [reviews, len(img), allbuyer, price, mainImage]
+    answer = [reviews, len(img), allbuyer, price, mainImage, productTitle]
+    info['Users'][user]['asins'][len(info['Users'][user]['asins']) - 1]['name'] = str(productTitle)
     info['Users'][user]['asins'][len(info['Users'][user]['asins']) - 1]['reviews'] = str(reviews)
     info['Users'][user]['asins'][len(info['Users'][user]['asins']) - 1]['img'] = len(img)
     info['Users'][user]['asins'][len(info['Users'][user]['asins']) - 1]['allbuyer'] = str(allbuyer)

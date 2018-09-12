@@ -124,7 +124,8 @@ def repeat_all_messages(message, flag=True):
             img = answer[1]
             buyer = answer[2]
             price = answer[3]
-            bot.send_message(message.chat.id, "Количество отзывов: " + str(reviews) + '\n' + "Количество картинок: " + str(img) + '\n' + "Количество продавцов: " + str(buyer) + '\n' "Цена: " + str(price))
+            name = answer[5]
+            bot.send_message(message.chat.id, "Наименование: " + str(name) + '\n' + "Количество отзывов: " + str(reviews) + '\n' + "Количество картинок: " + str(img) + '\n' + "Количество продавцов: " + str(buyer) + '\n' "Цена: " + str(price))
             bot.send_message(message.chat.id, 'Ваш ASIN принят и уже обрабатывается нашим сервером.' + '\n' + 'Если будут какие-либо изменения по вышепреведенным показателям - вам придет в чат уведомление :)')
 
 def checkKey(key):

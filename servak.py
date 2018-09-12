@@ -34,7 +34,7 @@ def product():
     for i in range(len(data['Users'])):
         for j in range(len(data['Users'][i]['asins'])):
             print("Я ТУТ")
-            url = requests.get("https://www.amazon.com/Nacome-Cotton-Breathable-Panties-Underwear/dp/" + data['Users'][i]['asins'][j]['asin'], headers=header)
+            url = requests.get("https://www.amazon.com/dp/" + data['Users'][i]['asins'][j]['asin'], headers=header)
             page = BeautifulSoup(url.text, "html.parser")
             with open("file.html", "w") as file:
                 file.write(str(page))
@@ -84,7 +84,7 @@ def change(newCheck, index, j):
             data['Users'][index]['asins'][j]['asin']) + " изменилось количество отзывов c " + str(
             data['Users'][index]['asins'][j]['reviews']) + " на " + str(newCheck[0]))
         bot.send_message(int(data['Users'][index]['id']),
-                         'https://www.amazon.com/Nacome-Cotton-Breathable-Panties-Underwear/dp/' +
+                         'https://www.amazon.com/dp/' +
                          data['Users'][index]['asins'][j]['asin'])
         data['Users'][index]['asins'][j]['reviews'] = newCheck[0]
     if str(data['Users'][index]['asins'][j]['img']) != str(newCheck[1]):
@@ -92,7 +92,7 @@ def change(newCheck, index, j):
             data['Users'][index]['asins'][j]['asin']) + " изменилось количество картинок c " + str(
             data['Users'][index]['asins'][j]['img']) + " на " + str(newCheck[1]))
         bot.send_message(int(data['Users'][index]['id']),
-                         'https://www.amazon.com/Nacome-Cotton-Breathable-Panties-Underwear/dp/' +
+                         'https://www.amazon.com/dp/' +
                          data['Users'][index]['asins'][j]['asin'])
         data['Users'][index]['asins'][j]['img'] = newCheck[1]
     if str(data['Users'][index]['asins'][j]['allbuyer']) != str(newCheck[2]):
@@ -100,7 +100,7 @@ def change(newCheck, index, j):
             data['Users'][index]['asins'][j]['asin']) + " изменилось количество продавцов c " + str(
             data['Users'][index]['asins'][j]['allbuyer']) + " на " + str(newCheck[2]))
         bot.send_message(int(data['Users'][index]['id']),
-                         'https://www.amazon.com/Nacome-Cotton-Breathable-Panties-Underwear/dp/' +
+                         'https://www.amazon.com/dp/' +
                          data['Users'][index]['asins'][j]['asin'])
         data['Users'][index]['asins'][j]['allbuyer'] = newCheck[2]
     if str(data['Users'][index]['asins'][j]['price']) != str(newCheck[3]):
@@ -108,14 +108,14 @@ def change(newCheck, index, j):
             data['Users'][index]['asins'][j]['asin']) + " изменилась цена c " + str(
             data['Users'][index]['asins'][j]['price']) + " на " + str(newCheck[3]))
         bot.send_message(int(data['Users'][index]['id']),
-                         'https://www.amazon.com/Nacome-Cotton-Breathable-Panties-Underwear/dp/' +
+                         'https://www.amazon.com/dp/' +
                          data['Users'][index]['asins'][j]['asin'])
         data['Users'][index]['asins'][j]['price'] = newCheck[3]
     if str(data['Users'][index]['asins'][j]['mainImage']) != str(newCheck[4]):
         bot.send_message(int(data['Users'][index]['id']), "По ASIN'у: " + str(
             data['Users'][index]['asins'][j]['asin']) + " изменилось главное фото")
         bot.send_message(int(data['Users'][index]['id']),
-                         'https://www.amazon.com/Nacome-Cotton-Breathable-Panties-Underwear/dp/' +
+                         'https://www.amazon.com/dp/' +
                          data['Users'][index]['asins'][j]['asin'])
         data['Users'][index]['asins'][j]['mainImage'] = newCheck[4]
     print("КОНЕЦ ПРОВЕРКИ")
