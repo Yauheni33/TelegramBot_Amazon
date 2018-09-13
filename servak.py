@@ -93,53 +93,43 @@ def change(newCheck, index, j, dat):
     try:
         #info['Users'][user]['asins'][len(info['Users'][user]['asins']) - 1]['reviews']
         if str(dat['Users'][index]['asins'][j]['reviews']) != str(newCheck[0]):
-            '''
             bot.send_message(int(dat['Users'][index]['id']), "По ASIN'у: " + str(
                 dat['Users'][index]['asins'][j]['asin']) + " изменилось количество отзывов c " + str(
                 dat['Users'][index]['asins'][j]['reviews']) + " на " + str(newCheck[0]))
             bot.send_message(int(dat['Users'][index]['id']),
                              'https://www.amazon.com/dp/' +
                              dat['Users'][index]['asins'][j]['asin'])
-                             '''
             dat['Users'][index]['asins'][j]['reviews'] = newCheck[0]
         if str(dat['Users'][index]['asins'][j]['img']) != str(newCheck[1]):
-            '''
             bot.send_message(int(dat['Users'][index]['id']), "По ASIN'у: " + str(
                 dat['Users'][index]['asins'][j]['asin']) + " изменилось количество картинок c " + str(
                 dat['Users'][index]['asins'][j]['img']) + " на " + str(newCheck[1]))
             bot.send_message(int(dat['Users'][index]['id']),
                              'https://www.amazon.com/dp/' +
                              dat['Users'][index]['asins'][j]['asin'])
-                             '''
             dat['Users'][index]['asins'][j]['img'] = newCheck[1]
         if str(dat['Users'][index]['asins'][j]['allbuyer']) != str(newCheck[2]):
-            '''
             bot.send_message(int(dat['Users'][index]['id']), "По ASIN'у: " + str(
                 dat['Users'][index]['asins'][j]['asin']) + " изменилось количество продавцов c " + str(
                 dat['Users'][index]['asins'][j]['allbuyer']) + " на " + str(newCheck[2]))
             bot.send_message(int(dat['Users'][index]['id']),
                              'https://www.amazon.com/dp/' +
                              dat['Users'][index]['asins'][j]['asin'])
-                             '''
             dat['Users'][index]['asins'][j]['allbuyer'] = newCheck[2]
         if str(dat['Users'][index]['asins'][j]['price']) != str(newCheck[3]):
-            '''
             bot.send_message(int(dat['Users'][index]['id']), "По ASIN'у: " + str(
                 dat['Users'][index]['asins'][j]['asin']) + " изменилась цена c " + str(
                 dat['Users'][index]['asins'][j]['price']) + " на " + str(newCheck[3]))
             bot.send_message(int(dat['Users'][index]['id']),
                              'https://www.amazon.com/dp/' +
                              dat['Users'][index]['asins'][j]['asin'])
-                             '''
             dat['Users'][index]['asins'][j]['price'] = newCheck[3]
         if str(dat['Users'][index]['asins'][j]['mainImage']) != str(newCheck[4]):
-            '''
             bot.send_message(int(dat['Users'][index]['id']), "По ASIN'у: " + str(
                 dat['Users'][index]['asins'][j]['asin']) + " изменилось главное фото")
             bot.send_message(int(dat['Users'][index]['id']),
                              'https://www.amazon.com/dp/' +
                              dat['Users'][index]['asins'][j]['asin'])
-                             '''
             dat['Users'][index]['asins'][j]['mainImage'] = newCheck[4]
             print("КОНЕЦ ПРОВЕРКИ")
     except:
