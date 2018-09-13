@@ -135,6 +135,7 @@ def change(newCheck, index, j, dat):
             print("КОНЕЦ ПРОВЕРКИ")
     except:
         bot.send_message(308367462, 'Чел с ' + str(int(dat['Users'][index]['id'])) + ' заблочен')
+        time.sleep(3)
     return dat
 
 
