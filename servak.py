@@ -42,8 +42,14 @@ def product(dat):
                 file.write(str(page))
             try:
                 mainImage = page.find("div", {"id": "imgTagWrapperId"}).find("img")['data-a-dynamic-image']
+                productTitle = page.find("span", {"id": "productTitle"}).text.replace('\n', '').replace(
+                    '                                                                                                                                                        ',
+                    '').replace(
+                    '                                                                                                                        ',
+                    '')
             except:
                 mainImage = dat['Users'][i]['asins'][j]['img']
+                continue
             try:
                 line = page.find("span", {"id": "acrCustomerReviewText"}).text
                 line = line.replace(',', '')
