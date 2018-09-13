@@ -79,6 +79,7 @@ def product(dat):
                 allbuyer += str(lastPage).count("a-row a-spacing-mini olpOffer")
             except:
                 print("1 Старница")
+            print("ASIN:", dat['Users'][i]['asins'][j]['asin'])
             print("Количество отзывов: ", reviews)
             print("Количество фото: ", len(img))
             print("Количество продавцов: ", allbuyer)
