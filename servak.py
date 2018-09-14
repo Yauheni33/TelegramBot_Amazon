@@ -57,7 +57,7 @@ def product(dat):
                 reviews = int(reviews[0])
             except:
                 reviews = 0
-            img = page.find("div", {"id": "altImages"}).findAll("img")
+            img = page.find("div", {"id": "altImages"}).findAll("li", {"class": "a-spacing-small item"})
             url = requests.get("https://www.amazon.com/gp/offer-listing/" + dat['Users'][i]['asins'][j]['asin'] + "/ref=dp_olp_new_mbc?ie=UTF8&condition=new", headers=header)
             page = BeautifulSoup(url.text, "html.parser")
             with open("file.html", "w") as file:
