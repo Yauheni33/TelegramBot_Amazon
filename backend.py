@@ -8,7 +8,7 @@ import requests
 from bs4 import BeautifulSoup
 
 header = {
-    'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36"
+    'User-Agent': "Mozilla/5.0 (Windows NT 5.1; rv:7.0.1) Gecko/20100101 Firefox/7.0.1"
 }
 
 zag = {'Content-type': 'application/json',  # Определение типа данных
