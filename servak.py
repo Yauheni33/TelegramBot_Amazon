@@ -11,7 +11,7 @@ from bs4 import BeautifulSoup
 from lead import bot
 
 header = {
-    'User-Agent': "Mozilla/5.0 (Windows NT 5.1; rv:7.0.1) Gecko/20100101 Firefox/7.0.1"
+    'User-Agent': "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:54.0) Gecko/20100101 Firefox/54.0"
 }
 
 zag = {'Content-type': 'application/json',  # Определение типа данных
@@ -151,4 +151,4 @@ if __name__ == '__main__':
         data = json.loads(requests.get('http://OutIin.pythonanywhere.com/read/').text)
         new = product(data)
         requests.post('http://OutIin.pythonanywhere.com/write/', data=json.dumps(new), headers=zag)
-        time.sleep(1800)
+        time.sleep(3600)

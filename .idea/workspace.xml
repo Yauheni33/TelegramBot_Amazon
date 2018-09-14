@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="57053ec2-f4d6-468a-b1a9-ac3ea2bfc2be" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/backend.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lead.py" beforeDir="false" afterPath="$PROJECT_DIR$/lead.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servak.py" beforeDir="false" afterPath="$PROJECT_DIR$/servak.py" afterDir="false" />
-    </list>
+    <list default="true" id="57053ec2-f4d6-468a-b1a9-ac3ea2bfc2be" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
