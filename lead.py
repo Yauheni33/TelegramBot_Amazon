@@ -12,7 +12,7 @@ from telebot import types
 import backend
 
 header = {
-    'User-Agent': "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:54.0) Gecko/20100101 Firefox/54.0"
+    'User-Agent': "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36"
 }
 
 zag = {'Content-type': 'application/json',  # Определение типа данных
