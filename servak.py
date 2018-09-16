@@ -41,7 +41,7 @@ def product(dat):
     for i in range(len(dat['Users'])):
         for j in range(len(dat['Users'][i]['asins'])):
             print("Я ТУТ")
-            print("USER-AGENT: " + userAgent[agent] + '\nНомер: ' + agent)
+            print("USER-AGENT: " + userAgent[agent] + '\nНомер: ' + str(agent))
             if checkAgent == 3:
                 header['User-Agent'] = userAgent[agent]
                 agent += 1
