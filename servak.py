@@ -66,7 +66,7 @@ def product(dat):
                 reviews = [int(s) for s in line.split() if s.isdigit()]
                 reviews = int(reviews[0])
             except:
-                reviews = 0
+                reviews = dat['Users'][i]['asins'][j]['reviews']
             img = page.find("div", {"id": "altImages"}).findAll("li", {"class": "a-spacing-small item"})
             url = requests.get("https://www.amazon.com/gp/offer-listing/" + dat['Users'][i]['asins'][j]['asin'] + "/ref=dp_olp_new_mbc?ie=UTF8&condition=new", headers=header)
             page = BeautifulSoup(url.text, "html.parser")
@@ -77,7 +77,7 @@ def product(dat):
             try:
                 price = page.find("div", {"class": "a-row a-spacing-mini olpOffer"}).find("span").text.replace("                ", '')
             except:
-                price = 0
+                price = dat['Users'][i]['asins'][j]['price']
             # page.find("li", attrs={"class": "a-last"}) != None
             try:
                 a = page.find("ul", {"class": "a-pagination"}).findAll("li")
@@ -87,6 +87,8 @@ def product(dat):
                 a = int(a[len(a) - 2].text[4:])
                 allbuyer += (a - 2) * 10
                 allbuyer += str(lastPage).count("a-row a-spacing-mini olpOffer")
+                if str(allbuyer) == '0':
+                    allbuyer = dat['Users'][i]['asins'][j]['allbuyer']
             except:
                 print("1 Старница")
             print("ASIN:", dat['Users'][i]['asins'][j]['asin'])

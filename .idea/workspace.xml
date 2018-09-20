@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="57053ec2-f4d6-468a-b1a9-ac3ea2bfc2be" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/backend.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lead.py" beforeDir="false" afterPath="$PROJECT_DIR$/lead.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/servak.py" beforeDir="false" afterPath="$PROJECT_DIR$/servak.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users.json" beforeDir="false" afterPath="$PROJECT_DIR$/users.json" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -95,12 +95,12 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="1431" />
+          <entry key="py" value="1437" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="1431" />
+          <entry key="Python" value="1437" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -125,17 +125,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/users.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="12915">
-              <caret line="1072" column="1" selection-start-line="1072" selection-start-column="1" selection-end-line="1072" selection-end-column="1" />
-              <folding>
-                <element signature="e#1222#4004#0" />
-                <element signature="e#4010#4697#0" />
-                <element signature="e#4703#5672#0" />
-                <element signature="e#5678#9977#0" />
-                <element signature="e#9983#11029#0" />
-                <element signature="e#11035#13257#0" />
-                <element signature="e#69958#73583#0" />
-              </folding>
+            <state relative-caret-position="15">
+              <caret line="1" column="12" lean-forward="true" selection-start-line="1" selection-start-column="12" selection-end-line="1" selection-end-column="12" />
             </state>
           </provider>
         </entry>
@@ -143,8 +134,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/servak.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="318">
-              <caret line="44" column="31" selection-start-line="44" selection-start-column="31" selection-end-line="44" selection-end-column="31" />
+            <state relative-caret-position="241">
+              <caret line="79" column="38" selection-start-line="79" selection-start-column="38" selection-end-line="79" selection-end-column="38" />
               <folding>
                 <element signature="e#47#58#0" expanded="true" />
               </folding>
@@ -196,6 +187,9 @@
       <find>data</find>
       <find>new</find>
       <find>new1</find>
+      <find>checkAgent</find>
+      <find>agent</find>
+      <find>price</find>
     </findStrings>
     <replaceStrings>
       <replace>queue1</replace>
@@ -209,9 +203,9 @@
       <list>
         <option value="$PROJECT_DIR$/requirements.txt" />
         <option value="$PROJECT_DIR$/main.py" />
-        <option value="$PROJECT_DIR$/users.json" />
         <option value="$PROJECT_DIR$/lead.py" />
         <option value="$PROJECT_DIR$/backend.py" />
+        <option value="$PROJECT_DIR$/users.json" />
         <option value="$PROJECT_DIR$/servak.py" />
       </list>
     </option>
@@ -423,22 +417,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/users.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="12915">
-          <caret line="1072" column="1" selection-start-line="1072" selection-start-column="1" selection-end-line="1072" selection-end-column="1" />
-          <folding>
-            <element signature="e#1222#4004#0" />
-            <element signature="e#4010#4697#0" />
-            <element signature="e#4703#5672#0" />
-            <element signature="e#5678#9977#0" />
-            <element signature="e#9983#11029#0" />
-            <element signature="e#11035#13257#0" />
-            <element signature="e#69958#73583#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lead.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -459,10 +437,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/users.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="12" lean-forward="true" selection-start-line="1" selection-start-column="12" selection-end-line="1" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/servak.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="318">
-          <caret line="44" column="31" selection-start-line="44" selection-start-column="31" selection-end-line="44" selection-end-column="31" />
+        <state relative-caret-position="241">
+          <caret line="79" column="38" selection-start-line="79" selection-start-column="38" selection-end-line="79" selection-end-column="38" />
           <folding>
             <element signature="e#47#58#0" expanded="true" />
           </folding>
