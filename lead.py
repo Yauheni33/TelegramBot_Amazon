@@ -8,8 +8,6 @@ import requests
 import telebot
 from bs4 import BeautifulSoup
 from telebot import types
-from django.http import HttpResponse
-from yandex_money.api import Wallet, ExternalPayment
 import backend
 
 

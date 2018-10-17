@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="57053ec2-f4d6-468a-b1a9-ac3ea2bfc2be" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/dogovor.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/file.html" beforeDir="false" afterPath="$PROJECT_DIR$/file.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lead.py" beforeDir="false" afterPath="$PROJECT_DIR$/lead.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servak.py" beforeDir="false" afterPath="$PROJECT_DIR$/servak.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -153,11 +149,10 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lead.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="531">
-              <caret line="91" column="67" selection-start-line="91" selection-start-column="67" selection-end-line="91" selection-end-column="67" />
+            <state relative-caret-position="135">
+              <caret line="9" column="25" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="25" />
               <folding>
-                <element signature="e#47#58#0" expanded="true" />
-                <marker date="1539777918684" expanded="true" signature="675:677" ph="..." />
+                <marker date="1539783546076" expanded="true" signature="585:587" ph="..." />
               </folding>
             </state>
           </provider>
@@ -351,6 +346,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1440" height="814" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24947146" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -519,11 +515,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lead.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="531">
-          <caret line="91" column="67" selection-start-line="91" selection-start-column="67" selection-end-line="91" selection-end-column="67" />
+        <state relative-caret-position="135">
+          <caret line="9" column="25" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="25" />
           <folding>
-            <element signature="e#47#58#0" expanded="true" />
-            <marker date="1539777918684" expanded="true" signature="675:677" ph="..." />
+            <marker date="1539783546076" expanded="true" signature="585:587" ph="..." />
           </folding>
         </state>
       </provider>
