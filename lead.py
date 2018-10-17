@@ -59,7 +59,7 @@ def callback_inline(call):
         if call.data[4] == ' ':
             page = requests.post("https://money.yandex.ru/quickpay/confirm.xml",
                                  data={"receiver": "410017454703595", "quickpay-form": "donate",
-                                       "targets": "Telegram Bot (Amazon Checker)", "sum": "50",
+                                       "targets": "Telegram Bot (Amazon Checker)", "sum": "655",
                                        "paymentType": "PC",
                                        "comment": call.data[5:], "label": str(call.message.chat.id)})
             bot.send_message(call.message.chat.id, page.url)
@@ -79,7 +79,7 @@ def callback_inline(call):
         if call.data[4] == ' ':
             page = requests.post("https://money.yandex.ru/quickpay/confirm.xml",
                                  data={"receiver": "410017454703595", "quickpay-form": "donate",
-                                       "targets": "Telegram Bot (Amazon Checker)", "sum": "50", "paymentType": "AC",
+                                       "targets": "Telegram Bot (Amazon Checker)", "sum": "655", "paymentType": "AC",
                                        "comment": call.data[5:], "label": str(call.message.chat.id)})
             bot.send_message(call.message.chat.id, page.url)
             keyboard.add(types.InlineKeyboardButton(text="Проверить оплату",
