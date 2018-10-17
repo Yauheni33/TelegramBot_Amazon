@@ -162,7 +162,10 @@ if __name__ == '__main__':
     print("ПРОВЕРКА 2 ПОТОКА")
     while True:
         heroku_conn = heroku3.from_key('717eeafe-8553-457b-81e2-1d81799983e3')
-        print(heroku_conn.apps()[0].process_formation()['worker'])
+        app = heroku_conn.apps()[0]
+        #app.restart()
+        app.process_formation()['worker'].scale(0)
+        print('Выключил')
         exit()
         data = json.loads(requests.get('http://OutIin.pythonanywhere.com/read/').text)
         new = product(data)
