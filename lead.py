@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 import datetime
 import json
-from pprint import pprint
 
 import requests
 import telebot
@@ -20,7 +19,7 @@ zag = {'Content-type': 'application/json',  # Определение типа д
            'Accept': 'text/plain',
            'Content-Encoding': 'utf-8'}
 
-bot = telebot.TeleBot('620840940:AAF5VN_qQJoSZh0eVlN07hFcE8Aye2VRmjo')
+bot = telebot.TeleBot('620840940:AAHasWai4UOSG3IgkCSSxUSSFYkmoQeVmlc')
 global missed
 missed = False
 
