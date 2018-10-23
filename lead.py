@@ -159,7 +159,7 @@ def callback_inline(message):
             for j in range(len(data['Users'][i]['asins'])):
                 bot.send_message(message.chat.id,
                                  str(j + 1) + ') ' + '/' + data['Users'][i]['asins'][j]['asin'] + '\n' +
-                                 data['Users'][i]['asins'][j]['name'] + '\n' + 'ASIN действителен еще: ' + str((datetime.datetime.now() - parse(data['Users'][i]['asins'][j]['date'])).days) + ' дней')
+                                 data['Users'][i]['asins'][j]['name'] + '\n' + 'ASIN действителен еще: ' + str(30 - int((datetime.datetime.now() - parse(data['Users'][i]['asins'][j]['date'])).days)) + ' дней')
 
 @bot.message_handler(commands=["delete"])
 def callback_inlin(message):
