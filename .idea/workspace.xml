@@ -1,18 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="57053ec2-f4d6-468a-b1a9-ac3ea2bfc2be" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/followers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Procfile" beforeDir="false" afterPath="$PROJECT_DIR$/Procfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/file.html" beforeDir="false" afterPath="$PROJECT_DIR$/file.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/key.json" beforeDir="false" afterPath="$PROJECT_DIR$/key.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lead.py" beforeDir="false" afterPath="$PROJECT_DIR$/lead.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servak.py" beforeDir="false" afterPath="$PROJECT_DIR$/servak.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users.json" beforeDir="false" afterPath="$PROJECT_DIR$/users.json" afterDir="false" />
-    </list>
+    <list default="true" id="57053ec2-f4d6-468a-b1a9-ac3ea2bfc2be" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
