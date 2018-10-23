@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
+import datetime
 import json
 from pprint import pprint
 
@@ -9,6 +9,7 @@ import telebot
 from bs4 import BeautifulSoup
 from telebot import types
 import backend
+from dateutil.parser import parse
 
 
 header = {
@@ -135,15 +136,17 @@ def callback_inline(call):
         oplata = json.loads(requests.get('http://outiin.pythonanywhere.com/oplata/').text)
         if str(call.message.chat.id) in oplata['data']:
             bot.send_message(call.message.chat.id, "Благодарим за оплату, ваши ключи: " + str(kol))
-            with open('key.json') as data_file:
-                keys = json.load(data_file)
+            keys = json.loads(requests.get('http://OutIin.pythonanywhere.com/key/').text)
             array = keys['key']
-            for i in range(len(array)):
+            ot = int(keys['from'])
+            for i in range(ot, len(array)):
                 if i == kol:
                     break
                 bot.send_message(call.message.chat.id, array[i])
             bot.send_message(308367462, 'Произведена оплата на ' + str(kol) + ' ASINов')
+            keys['from'] = str(int(keys['from']) + kol)
             requests.get('http://outiin.pythonanywhere.com/oplata/', params={'label': str(call.message.chat.id)})
+            requests.post('http://OutIin.pythonanywhere.com/key/', data=json.dumps(keys), headers=zag)
         else:
             bot.send_message(call.message.chat.id, "Ваша оплата не произведена")
 
@@ -157,7 +160,7 @@ def callback_inline(message):
             for j in range(len(data['Users'][i]['asins'])):
                 bot.send_message(message.chat.id,
                                  str(j + 1) + ') ' + '/' + data['Users'][i]['asins'][j]['asin'] + '\n' +
-                                 data['Users'][i]['asins'][j]['name'])
+                                 data['Users'][i]['asins'][j]['name'] + '\n' + 'ASIN действителен еще: ' + str((datetime.datetime.now() - parse(data['Users'][i]['asins'][j]['date'])).days) + ' дней')
 
 @bot.message_handler(commands=["delete"])
 def callback_inlin(message):

@@ -90,13 +90,20 @@ def product(dat):
                     allbuyer = dat['Users'][i]['asins'][j]['allbuyer']
             except:
                 print("1 Старница")
+            ad = requests.get('https://www.amazon.com/s/ref=nb_sb_noss?url=search-alias%3Daps&field-keywords=' +
+                              dat['Users'][i]['asins'][j]['name'] + ' ' + dat['Users'][i]['asins'][j]['asin'])
+            pg = BeautifulSoup(ad.text, 'html.parser')
+            if pg.find("h1", {"id": "noResultsTitle"}) == None:
+                index = False
+            else:
+                index = True
             print("ASIN:", dat['Users'][i]['asins'][j]['asin'])
             print("Количество отзывов: ", reviews)
             print("Количество фото: ", len(img))
             print("Количество продавцов: ", allbuyer)
             print("Цена: ", price)
             print("Main IMAGE: ", mainImage)
-            answer = [reviews, len(img), allbuyer, price, mainImage]
+            answer = [reviews, len(img), allbuyer, price, mainImage, index]
             new1 = change(answer, i, j, dat)
             checkAgent = 0
     return new1
@@ -105,46 +112,53 @@ def product(dat):
 def change(newCheck, index, j, dat):
     try:
         #info['Users'][user]['asins'][len(info['Users'][user]['asins']) - 1]['reviews']
-        if str(dat['Users'][index]['asins'][j]['reviews']) != str(newCheck[0]):
+        if str(dat['Users'][index]['asins'][j]['reviews']) != str(newCheck[0]) and str(newCheck[0]) != '0':
             #int(dat['Users'][index]['id'])
-            bot.send_message(308367462, "По ASIN'у: " + str(
+            bot.send_message(int(dat['Users'][index]['id']), "По ASIN'у: " + str(
                 dat['Users'][index]['asins'][j]['asin']) + " изменилось количество отзывов c " + str(
                 dat['Users'][index]['asins'][j]['reviews']) + " на " + str(newCheck[0]))
-            bot.send_message(308367462,
+            bot.send_message(int(dat['Users'][index]['id']),
                              'https://www.amazon.com/dp/' +
                              dat['Users'][index]['asins'][j]['asin'])
             dat['Users'][index]['asins'][j]['reviews'] = newCheck[0]
-        if str(dat['Users'][index]['asins'][j]['img']) != str(newCheck[1]):
-            bot.send_message(308367462, "По ASIN'у: " + str(
+        if str(dat['Users'][index]['asins'][j]['img']) != str(newCheck[1]) and str(newCheck[1]) != '0':
+            bot.send_message(int(dat['Users'][index]['id']), "По ASIN'у: " + str(
                 dat['Users'][index]['asins'][j]['asin']) + " изменилось количество картинок c " + str(
                 dat['Users'][index]['asins'][j]['img']) + " на " + str(newCheck[1]))
-            bot.send_message(308367462,
+            bot.send_message(int(dat['Users'][index]['id']),
                              'https://www.amazon.com/dp/' +
                              dat['Users'][index]['asins'][j]['asin'])
             dat['Users'][index]['asins'][j]['img'] = newCheck[1]
-        if str(dat['Users'][index]['asins'][j]['allbuyer']) != str(newCheck[2]):
-            bot.send_message(308367462, "По ASIN'у: " + str(
+        if str(dat['Users'][index]['asins'][j]['allbuyer']) != str(newCheck[2]) and str(newCheck[2]) != '0':
+            bot.send_message(int(dat['Users'][index]['id']), "По ASIN'у: " + str(
                 dat['Users'][index]['asins'][j]['asin']) + " изменилось количество продавцов c " + str(
                 dat['Users'][index]['asins'][j]['allbuyer']) + " на " + str(newCheck[2]))
-            bot.send_message(308367462,
+            bot.send_message(int(dat['Users'][index]['id']),
                              'https://www.amazon.com/dp/' +
                              dat['Users'][index]['asins'][j]['asin'])
             dat['Users'][index]['asins'][j]['allbuyer'] = newCheck[2]
-        if str(dat['Users'][index]['asins'][j]['price']) != str(newCheck[3]):
-            bot.send_message(308367462, "По ASIN'у: " + str(
+        if str(dat['Users'][index]['asins'][j]['price']) != str(newCheck[3]) and str(newCheck[3]) != '0':
+            bot.send_message(int(dat['Users'][index]['id']), "По ASIN'у: " + str(
                 dat['Users'][index]['asins'][j]['asin']) + " изменилась цена c " + str(
                 dat['Users'][index]['asins'][j]['price']) + " на " + str(newCheck[3]))
-            bot.send_message(308367462,
+            bot.send_message(int(dat['Users'][index]['id']),
                              'https://www.amazon.com/dp/' +
                              dat['Users'][index]['asins'][j]['asin'])
             dat['Users'][index]['asins'][j]['price'] = newCheck[3]
-        if str(dat['Users'][index]['asins'][j]['mainImage']) != str(newCheck[4]):
-            bot.send_message(308367462, "По ASIN'у: " + str(
+        if str(dat['Users'][index]['asins'][j]['mainImage']) != str(newCheck[4]) and str(newCheck[4]) != '0':
+            bot.send_message(int(dat['Users'][index]['id']), "По ASIN'у: " + str(
                 dat['Users'][index]['asins'][j]['asin']) + " изменилось главное фото")
-            bot.send_message(308367462,
+            bot.send_message(int(dat['Users'][index]['id']),
                              'https://www.amazon.com/dp/' +
                              dat['Users'][index]['asins'][j]['asin'])
             dat['Users'][index]['asins'][j]['mainImage'] = newCheck[4]
+        if str(dat['Users'][index]['asins'][j]['index']) != str(newCheck[5]) and str(newCheck[5]) != '0':
+            bot.send_message(int(dat['Users'][index]['id']), "По ASIN'у: " + str(
+                dat['Users'][index]['asins'][j]['asin']) + " изменилась индексация")
+            bot.send_message(int(dat['Users'][index]['id']),
+                             'https://www.amazon.com/dp/' +
+                             dat['Users'][index]['asins'][j]['asin'])
+            dat['Users'][index]['asins'][j]['index'] = newCheck[5]
             print("КОНЕЦ ПРОВЕРКИ")
     except:
         #bot.send_message(308367462, 'Чел с ' + str(int(dat['Users'][index]['id'])) + ' заблочен')
@@ -158,16 +172,13 @@ def python():
     pprint(type(read))
 
 if __name__ == '__main__':
-    #python()
     print("ПРОВЕРКА 2 ПОТОКА")
     while True:
         heroku_conn = heroku3.from_key('717eeafe-8553-457b-81e2-1d81799983e3')
         app = heroku_conn.apps()[0]
-        #app.restart()
-        app.process_formation()['worker'].scale(0)
-        print('Выключил')
-        exit()
+        app.restart()
+        #app.process_formation()['worker'].scale(0)
         data = json.loads(requests.get('http://OutIin.pythonanywhere.com/read/').text)
         new = product(data)
-        #requests.post('http://OutIin.pythonanywhere.com/write/', data=json.dumps(new), headers=zag)
-        #time.sleep(3600)
+        requests.post('http://OutIin.pythonanywhere.com/write/', data=json.dumps(new), headers=zag)
+        time.sleep(5400)

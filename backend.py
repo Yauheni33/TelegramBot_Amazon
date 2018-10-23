@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
+import datetime
 import json
 from pprint import pprint
 
@@ -93,6 +93,13 @@ def product(asin, user, flag, info):
         allbuyer += str(lastPage).count("a-row a-spacing-mini olpOffer")
     except:
         print("1 Старница")
+    ad = requests.get('https://www.amazon.com/s/ref=nb_sb_noss?url=search-alias%3Daps&field-keywords=' +
+                      dat['Users'][i]['asins'][j]['name'] + ' ' + dat['Users'][i]['asins'][j]['asin'])
+    pg = BeautifulSoup(ad.text, 'html.parser')
+    if pg.find("h1", {"id": "noResultsTitle"}) == None:
+        index = False
+    else:
+        index = True
     print("Количество отзывов: ", reviews)
     print("Количество фото: ", len(img))
     print("Количество продавцов: ", allbuyer)
@@ -105,9 +112,11 @@ def product(asin, user, flag, info):
     info['Users'][user]['asins'][len(info['Users'][user]['asins']) - 1]['allbuyer'] = str(allbuyer)
     info['Users'][user]['asins'][len(info['Users'][user]['asins']) - 1]['price'] = str(price)
     info['Users'][user]['asins'][len(info['Users'][user]['asins']) - 1]['mainImage'] = str(mainImage)
+    info['Users'][user]['asins'][len(info['Users'][user]['asins']) - 1]['date'] = str(datetime.datetime.now())
+    info['Users'][user]['asins'][len(info['Users'][user]['asins']) - 1]['index'] = str(index)
     #ask = requests.get('http://OutIin.pythonanywhere.com/write/', params={'name': json.dumps(info)})
     #pprint(type(json.dumps(info)))
-    print(type(json.dumps(info)))
+    #print(type(json.dumps(info)))
     requests.post('http://OutIin.pythonanywhere.com/write/', data=json.dumps(info), headers=zag)
     return answer
 

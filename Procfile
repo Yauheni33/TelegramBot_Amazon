@@ -1,1 +1,1 @@
-worker: python3 lead.py
+worker: python3 lead.py & servak.py & followers.py
