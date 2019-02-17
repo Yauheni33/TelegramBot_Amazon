@@ -15,10 +15,10 @@ zag = {'Content-type': 'application/json',  # Определение типа д
            'Accept': 'text/plain',
            'Content-Encoding': 'utf-8'}
 
-fromaddr = "quality.busko@gmail.com"
-mypass = "idinaxui"
-toaddrPAVEL = "busko-007@yandex.ru"
-toaddrYauheni = "busko-007@mail.ru"
+fromaddr = "###"
+mypass = "###"
+toaddrPAVEL = "###"
+toaddrYauheni = "###"
 
 
 
