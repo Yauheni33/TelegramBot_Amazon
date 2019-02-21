@@ -19,10 +19,10 @@ zag = {'Content-type': 'application/json',  # Определение типа д
            'Accept': 'text/plain',
            'Content-Encoding': 'utf-8'}
 
-fromaddr = "quality.busko@gmail.com"
-mypass = "idinaxui"
-toaddrPAVEL = "busko-007@yandex.ru"
-toaddrYauheni = "busko-007@mail.ru"
+fromaddr = "####"
+mypass = "####"
+toaddrPAVEL = "####"
+toaddrYauheni = "####"
 
 
 #bot.send_message(int(data['Users'][0]['id']), "Введите адекватный ASIN :)")
