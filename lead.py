@@ -19,7 +19,7 @@ zag = {'Content-type': 'application/json',  # Определение типа д
            'Accept': 'text/plain',
            'Content-Encoding': 'utf-8'}
 
-bot = telebot.TeleBot('620840940:AAHasWai4UOSG3IgkCSSxUSSFYkmoQeVmlc')
+bot = telebot.TeleBot('####')
 global missed
 missed = False
 
